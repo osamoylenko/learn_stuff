@@ -41,3 +41,18 @@ You can get some clues what an image consists of:
 
 Map ports & run in background
     docker run -p 9090:9090 -d prom/prometheus
+
+
+Запустить контейнер:
+    docker run -v /hostDir:/contDir -i -t --rm -p 8080:8080 --name Name Image /bin/bash
+    -v /hostDir:/contDir подключенине папки
+    -i -t интерактивное управление
+    --rm удалить контейнер после остановки
+    -p hostPort:containerPort пробросить порт
+    --name Name имя контейнера
+    Image имя образа
+    /bin/bash запускаемая команда при запуске контейнера
+    --link db:db прилинковать имяконтейнера:внутренее имя
+
+Собрать образ из текущей папки:
+    docker build -t Name .
