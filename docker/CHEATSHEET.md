@@ -56,3 +56,7 @@ Map ports & run in background
 
 Собрать образ из текущей папки:
     docker build -t Name .
+
+
+  432  docker commit -m "test container commit" -a "OS" 20d11e4d45fe testcont:sam
+  458  docker commit 934cec1ae801 someimg
