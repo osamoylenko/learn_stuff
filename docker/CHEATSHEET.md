@@ -60,3 +60,8 @@ Map ports & run in background
 
   432  docker commit -m "test container commit" -a "OS" 20d11e4d45fe testcont:sam
   458  docker commit 934cec1ae801 someimg
+
+restart & reattach exited container
+docker start -a -i `docker ps -q -l`
+
+docker run --network=host --rm -it ubuntu
