@@ -1,0 +1,17 @@
+file_to_disk1 = './tmp/disk1.vdi'
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  # needs plugin
+  config.disksize.size = '50GB'
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+
+    # additional disk
+    unless File.exist?(file_to_disk1)
+      vb.customize ['createhd', '--filename', file_to_disk1, '--size', 50 * 1024]
+    end
+    vb.customize ['storageattach', :id, '--storagectl', 'SCSI', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk1]
+  end
+  config.vbguest.auto_update = false
+end
