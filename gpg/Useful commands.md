@@ -52,6 +52,8 @@ Host vultr
 Yes it's fucking undocumented possibility to specify public key in IdentityFile option.
 Together with IdentitiesOnly option turned on it allows to specify which key to use in ssh-agent.
 
+Restart gpg-agent in order to reload configuration, reset cached passphrase, etc.
+`gpg-connect-agent <<< reloadagent`
 
 ## Exporting
 gpg --export-secret-keys
