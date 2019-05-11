@@ -57,3 +57,7 @@ Together with IdentitiesOnly option turned on it allows to specify which key to 
 gpg --export-secret-keys
 gpg --export-secret-subkeys (without master key)
 
+## Decent FLOSS password managers
+Bitwarden
+KeepassXC
+
