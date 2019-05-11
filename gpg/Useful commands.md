@@ -53,5 +53,7 @@ Yes it's fucking undocumented possibility to specify public key in IdentityFile 
 Together with IdentitiesOnly option turned on it allows to specify which key to use in ssh-agent.
 
 
-
+## Exporting
+gpg --export-secret-keys
+gpg --export-secret-subkeys (without master key)
 
