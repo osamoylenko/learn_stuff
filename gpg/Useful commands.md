@@ -62,6 +62,7 @@ gpg --export-secret-subkeys (without master key)
 ```
 
 `gpg --show-keys [file]` allows to see keys from the file before actually importing them
+(On older versions: `gpg --import-option show-only --import [file]`)
 
 ## Decent FLOSS password managers
 Bitwarden
