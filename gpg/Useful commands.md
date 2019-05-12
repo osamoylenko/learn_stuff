@@ -63,3 +63,6 @@ gpg --export-secret-subkeys (without master key)
 Bitwarden
 KeepassXC
 
+## Software
+pinentry-mac - GUI app to enter a passphrase
+
