@@ -56,8 +56,12 @@ Restart gpg-agent in order to reload configuration, reset cached passphrase, etc
 `gpg-connect-agent <<< reloadagent`
 
 ## Exporting
+```
 gpg --export-secret-keys
 gpg --export-secret-subkeys (without master key)
+```
+
+`gpg --show-keys [file]` allows to see keys from the file before actually importing them
 
 ## Decent FLOSS password managers
 Bitwarden
