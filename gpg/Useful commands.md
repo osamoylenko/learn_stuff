@@ -55,11 +55,17 @@ Together with IdentitiesOnly option turned on it allows to specify which key to 
 Restart gpg-agent in order to reload configuration, reset cached passphrase, etc.
 `gpg-connect-agent <<< reloadagent`
 
-## Exporting
+## Exporting & Importing
 ```
 gpg --export-secret-keys
 gpg --export-secret-subkeys (without master key)
 ```
+
+To import with keep the original trust level (ultimate):
+`gpg --import --import-option keep-ownertrust [file]`
+
+Or else one might just import a key and then type `trust` in `gpg --edit-key` dialogue.
+
 
 `gpg --show-keys [file]` allows to see keys from the file before actually importing them
 (On older versions: `gpg --import-option show-only --import [file]`)
