@@ -61,10 +61,9 @@ gpg --export-secret-keys
 gpg --export-secret-subkeys (without master key)
 ```
 
-To import with keep the original trust level (ultimate):
-`gpg --import --import-option keep-ownertrust [file]`
-
-Or else one might just import a key and then type `trust` in `gpg --edit-key` dialogue.
+After importing, in order to keep the original trust level (ultimate):
+`gpg --edit-key [key]`
+Then type `trust` and select desired level.
 
 
 `gpg --show-keys [file]` allows to see keys from the file before actually importing them
