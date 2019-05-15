@@ -1,28 +1,42 @@
+## List keys:
+```
 gpg --list-keys --with-subkey-fingerprints
+gpg --list-keys --with-keygrip (keygrip is equal to a private key file name as it's stored in ~/.gnupg/private*)
+gpg --list-secret-keys
+```
+Some detailed info about a key you might retrieve with `gpg --edit-key [key]`.
 
+## Export
+```
+gpg --export-secret-keys
+gpg --export-secret-subkeys (without master key)
+gpg --export-secret-subkeys [key]! (only specific subkey)
+```
+For backup purposes you might also consider using `paperkey`.
 
-add subkey with auth capability
+## Import preview
+`gpg --show-keys [file]` allows to see keys from the file before actually importing them
+(On older versions: `gpg --import-option show-only --import [file]`)
 
-gpg --export-ssh-key <subkey-id>!
-(exclamation mark to prevent using of the primary key instead of the specified one)
+## Trust level
+After importing, in order to keep the original trust level (ultimate):
+```
+gpg --edit-key [key]
+```
+Then type `trust` and select desired level.
 
+## Decent FLOSS password managers
+* Bitwarden
+* KeepassXC
 
-might also consider using paperkey
+## Software
+pinentry-mac - GUI app to enter a passphrase
 
-gpg --list-keys --with-keygrip (keygrip is equal to private key file names as they are stored in .gnupg)
-
-
-put
-enable-ssh-support
-to ~/.gnupg/gpg-agent.conf
-check necessity
-
-
-put keygrip of ssh key to ~/.gnupg/sshcontrol
-
-
-put it to .bashrc (or another autoloading file)
-
+## Using gpg-agent as ssh-agent
+Read `man gpg-agent` ('cause on Internet there is a lot of stale information)
+1. Add subkey with auth capability (`--edit-key` dialogue)
+2. Put this to `.bashrc` (or another autoloading file):
+```
 # GPG stuff
 export GPG_TTY=$(tty)
 
@@ -30,49 +44,18 @@ unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
+```
+3. Add keygrip of auth key to `~/.gnupg/sshcontrol`
+4. Add `enable-ssh-support` to `~/.gnupg/gpg-agent.conf`  
+TODO: check necessity of this step
+5. Check `ssh-add -L`. You'll see key from gpg
+6. If you want to specify which key stored in agent to use:
+  * `gpg --export-ssh-key <auth-subkey-id>! > ~/.ssh/mykey.pub`
+  * `chmod 0600 ~/.ssh/mykey.pub`
+  * Specify it in `~/.ssh/config` as `IdentityFile`
 
+Yes it's a fucking undocumented possibility to specify a public key in the `IdentityFile` option.
+Together with `IdentitiesOnly` option turned on it allows to specify which key to use in ssh-agent.
 
-read man gpg-agent (cause on Internet there is a lot of stale information)
-
-check ssh-add -L
-you'll see key from gpg
-
-then to specify it in ~/.ssh/config
-ssh-add -L > ~/.ssh/mykey.pub
-chmod 0600 ~/.ssh/mykey.pub
-
-put to config:
-Host vultr
-  Hostname 199.247.20.206
-  User oleg
-  IdentityFile ~/.ssh/vultr.pub
-  IdentitiesOnly yes
-
-
-Yes it's fucking undocumented possibility to specify public key in IdentityFile option.
-Together with IdentitiesOnly option turned on it allows to specify which key to use in ssh-agent.
-
-Restart gpg-agent in order to reload configuration, reset cached passphrase, etc.
+7. Restart gpg-agent in order to reload configuration, reset cached passphrase, etc.  
 `gpg-connect-agent <<< reloadagent`
-
-## Exporting & Importing
-```
-gpg --export-secret-keys
-gpg --export-secret-subkeys (without master key)
-```
-
-After importing, in order to keep the original trust level (ultimate):
-`gpg --edit-key [key]`
-Then type `trust` and select desired level.
-
-
-`gpg --show-keys [file]` allows to see keys from the file before actually importing them
-(On older versions: `gpg --import-option show-only --import [file]`)
-
-## Decent FLOSS password managers
-Bitwarden
-KeepassXC
-
-## Software
-pinentry-mac - GUI app to enter a passphrase
-
