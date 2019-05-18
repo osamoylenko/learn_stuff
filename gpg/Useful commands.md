@@ -59,3 +59,10 @@ Together with `IdentitiesOnly` option turned on it allows to specify which key t
 
 7. Restart gpg-agent in order to reload configuration, reset cached passphrase, etc.  
 `gpg-connect-agent <<< reloadagent`
+
+## To connect smart card on Ubuntu
+sudo apt install scdaemon
+gpg --card-status
+gpg --edit-card
+gpgconf --kill gpg-agent
+
