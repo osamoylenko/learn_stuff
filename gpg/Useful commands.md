@@ -61,8 +61,13 @@ Together with `IdentitiesOnly` option turned on it allows to specify which key t
 `gpg-connect-agent <<< reloadagent`
 
 ## To connect smart card on Ubuntu
+```
 sudo apt install scdaemon
 gpg --card-status
 gpg --edit-card
 gpgconf --kill gpg-agent
+```
 
+## Working with smart card
+* Inserting a smart card automatically adds the auth key to gpg-agent. Even without specifying in ~/.gnupg/sshcontrol
+* Inserting a smart card automatically adds keyfiles (stubs) to ~/.gnupg/private*
