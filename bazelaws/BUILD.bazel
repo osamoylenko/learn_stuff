@@ -1,0 +1,19 @@
+java_library(
+    name = "aws-java-sdk-s3",
+    visibility = ["//visibility:public"],
+    exports = [
+        "@maven//:software_amazon_awssdk_s3",
+        "@maven//:software_amazon_awssdk_regions",
+        "@maven//:software_amazon_awssdk_sdk_core",
+    ],
+)
+
+
+java_binary(
+    name = "bazelaws",
+    srcs = ["src/Main.java"],
+    main_class = "Main",
+    deps = [
+        ":aws-java-sdk-s3",
+    ],
+)
