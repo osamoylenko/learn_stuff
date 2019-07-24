@@ -12,4 +12,6 @@ Sending a log message to a remote syslog server
 ```
 <14>sourcehost message text' | nc -v -u -w 0 [host] 514
 ```
+PHP wrapper to send logs to a remote syslog server  
+https://github.com/coderofsalvation/syslog-flexible
 
