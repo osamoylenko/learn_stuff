@@ -1,3 +1,8 @@
+## Strategy
+* Store the master key in really secure manner (don't store it on devices!)
+* For devices use subkeys signed by the master key. And cipher it with a different passphrase!
+* You can store whole .gnupg directory on an external encrypted USB device. See `GNUPGHOME` envvar and `--homedir` option
+
 ## List keys:
 ```
 gpg --list-keys --with-subkey-fingerprints
@@ -71,3 +76,14 @@ gpgconf --kill gpg-agent
 ## Working with smart card
 * Inserting a smart card automatically adds the auth key to gpg-agent. Even without specifying in ~/.gnupg/sshcontrol
 * Inserting a smart card automatically adds keyfiles (stubs) to ~/.gnupg/private*
+
+## Some other interesting features
+### Strengthening hash preferences
+You can set your key to prefer stronger hashes. Use the `gpg --edit-key` command. At the `gpg>` prompt, enter the command `setpref SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed`, then save.
+
+### RAMFS
+You can create a RAM-based ramfs temporary folder to prevent your keys from being written to permanent storage. Use ramfs instead of tmpfs/ or /dev/shm/ because ramfs doesn’t write to swap.
+```
+mkdir /tmp/gpg
+sudo mount -t ramfs -o size=1M ramfs /tmp/gpg
+```
