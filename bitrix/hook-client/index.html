@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        const response = axios.post("https://vz271109.eurodir.ru/rest/1/4pg0tjmspqaq90iw/task.item.add", [{
+            "TITLE": "title",
+            "RESPONSIBLE_ID": 1, // required field
+        }]).then(r => {
+            console.log(r);
+        });
+    </script>
+</body>
+
+</html>
