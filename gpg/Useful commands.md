@@ -20,7 +20,7 @@ gpg --export-secret-subkeys [key]! (only specific subkey)
 For backup purposes you might also consider using `paperkey`.
 
 ## Import preview
-`gpg --show-keys [file]` allows to see keys from the file before actually importing them
+`gpg --show-keys [file]` allows to see keys from the file before actually importing them  
 (On older versions: `gpg --import-option show-only --import [file]`)
 
 ## Trust level
@@ -36,6 +36,9 @@ Then type `trust` and select desired level.
 
 ## Software
 pinentry-mac - GUI app to enter a passphrase
+
+## Add subkey
+Use expert mode `gpg --edit-key --expert [user-id]` to get more options of subkey crypto algorithms.
 
 ## Using gpg-agent as ssh-agent
 Read `man gpg-agent` ('cause on Internet there is a lot of stale information)
