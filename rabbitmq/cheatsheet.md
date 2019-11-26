@@ -17,6 +17,8 @@ rabbitmq-plugins enable rabbitmq_tracing
 
 Then create Tracing in Admin section of Web UI. And look at `/var/tmp/rabbitmq-tracing`
 
+You may fill pattern to filter out the specific exchange: `#.comp-status`
+
 When you're done, don't forget to turn tracing off:
 ```
 rabbitmqctl trace_off -p datalore
