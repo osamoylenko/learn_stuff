@@ -12,6 +12,13 @@ gpg --list-secret-keys
 Some detailed info about a key you might retrieve with `gpg --edit-key [key]`.
 
 ## Export
+### Public keys
+You need to export public keys in order to use a smartcard. Because you can't extract public keys from a smartcard itself.
+```
+gpg --export (all subkeys will be included)
+```
+
+### Private keys
 ```
 gpg --export-secret-keys
 gpg --export-secret-subkeys (without master key)
