@@ -61,8 +61,6 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 fi
 ```
 3. Add keygrip of auth key to `~/.gnupg/sshcontrol`
-4. Add `enable-ssh-support` to `~/.gnupg/gpg-agent.conf`  
-TODO: check necessity of this step
 5. Check `ssh-add -L`. You'll see key from gpg
 6. If you want to specify which key stored in agent to use:
   * `gpg --export-ssh-key <auth-subkey-id>! > ~/.ssh/mykey.pub`
