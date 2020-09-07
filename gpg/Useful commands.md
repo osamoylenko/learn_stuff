@@ -18,6 +18,8 @@ You need to export public keys in order to use a smartcard. Because you can't ex
 gpg --export (all subkeys will be included)
 ```
 
+No need to separately export public keys for backup purposes - the export of a private key contains a public key as well.
+
 ### Private keys
 ```
 gpg --export-secret-keys
