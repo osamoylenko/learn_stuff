@@ -1,3 +1,6 @@
+## Real nice & useful repo on GPG, smartcards etc
+https://github.com/drduh/YubiKey-Guide
+
 ## Strategy
 * Store the master key in really secure manner (don't store it on devices!)
 * For devices use subkeys signed by the master key. And cipher it with a different passphrase!
@@ -86,6 +89,7 @@ gpgconf --kill gpg-agent
 ## Working with smart card
 * Inserting a smart card automatically adds the auth key to gpg-agent. Even without specifying in ~/.gnupg/sshcontrol
 * Inserting a smart card automatically adds keyfiles (stubs) to ~/.gnupg/private*
+* To change smartcard PIN & Admin PIN: `gpg --change-pin`
 
 ## Some other interesting features
 ### Strengthening hash preferences
