@@ -101,3 +101,26 @@ You can create a RAM-based ramfs temporary folder to prevent your keys from bein
 mkdir /tmp/gpg
 sudo mount -t ramfs -o size=1M ramfs /tmp/gpg
 ```
+
+## Backup & restore cheat sheet
+```
+gpg --export-secret-keys --armor > priv.arm
+
+split -C 650 -d priv.arm priv-
+# -C option value is selected based on the printing convenience
+
+for file in priv-??; do
+    cat "$file" | qrencode --8bit --level H --output "${file}.qr.png"
+done
+
+# Shotwell can be used for printing multiple images on one page
+
+for file in `ls`; do
+    zbarimg --raw $file >> recognized.arm
+done
+# watch the order of files
+
+gpg --import recognized.arm
+
+# to restore SSH put keygrip of the [A] key to ~/.gnupg/sshcontrol
+```
