@@ -110,7 +110,7 @@ You're going to need the smartcard Admin PIN.
 gpg --edit-key [key]
 ```
 Then for each key (master & subkeys) one by one:
-* Select key with `key [number]`. Selected key is indicateed witn an `*`
+* Select key with `key [number]`. Selected key is indicated witn an `*`
 * Run `keytocard`
 
 In the end, `save` to save changes and exit.
