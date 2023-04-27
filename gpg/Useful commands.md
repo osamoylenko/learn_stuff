@@ -89,7 +89,31 @@ gpgconf --kill gpg-agent
 ## Working with smart card
 * Inserting a smart card automatically adds the auth key to gpg-agent. Even without specifying in ~/.gnupg/sshcontrol
 * Inserting a smart card automatically adds keyfiles (stubs) to ~/.gnupg/private*
-* To change smartcard PIN & Admin PIN: `gpg --change-pin`
+
+### Change PIN & Admin PIN:
+```
+gpg --change-pin
+
+Default pins are:
+PIN: 123456
+Admin PIN: 12345678
+```
+
+### Set PIN retries number
+```
+ykman openpgp set-pin-retries 3 3 3
+```
+
+### Transfer keys to smartcard
+You're going to need the smartcard Admin PIN.
+```
+gpg --edit-key [key]
+```
+Then for each key (master & subkeys) one by one:
+* Select key with `key [number]`. Selected key is indicateed witn an `*`
+* Run `keytocard`
+
+In the end, `save` to save changes and exit.
 
 ## Some other interesting features
 ### Strengthening hash preferences
