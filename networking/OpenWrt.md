@@ -10,6 +10,22 @@
 * скопировать `/etc/hotplug.d/iface/30-vpnroute`
 * `/etc/config/firewall`
 * `/etc/init.d/getdomains`
+* Чтобы зафиксировать названия интерфейсов VPN:
+  - указать `tun0` в `/etc/sing-box/config.json`
+  - указать `dev tun1` в `/etc/openvpn/client.conf`
+  - ```
+    service sing-box stop
+    service openvpn stop
+    service sing-box start
+    service openvpn start
+    ```
+
+# Перезагрузка
+```
+service network restart
+service getdomains restart
+service firewall restart
+```
 
 # Проверки
 ```
@@ -22,3 +38,13 @@ ip rule list
 
 # Другой интересный вариант split tunnel
 https://antizapret.prostovpn.org/tech.html
+
+# МТС Интернет
+* PON-розетку перевести в Bridged
+* Поставить галку Port Mapping LAN_1
+* Если проблемы с получением IP-адреса на WAN (DHCP), то:
+  - воткнуть в компьютер, получить IP-адрес
+  - прописать MAC-адрес компьютера на WAN
+  - прописать полученный на компьютере IP-адрес как static на WAN
+  - должен заработать WAN
+  - вернуть DHCP на WAN
