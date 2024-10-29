@@ -55,10 +55,10 @@ https://antizapret.prostovpn.org/tech.html
 
 Чтобы это решить, в `/etc/config/network` добавляем ещё один интерфейс на br-wan со статическим IP-адресом в локальной подсети розетки:
 ```
-config interface 'wanpon'                 
-        option device 'br-wan'            
-        option proto 'static'             
-        option ipaddr '192.168.10.33'     
+config interface 'wanpon'
+        option device 'br-wan'
+        option proto 'static'
+        option ipaddr '192.168.10.33'
         option netmask '255.255.255.0'
 ```
 
