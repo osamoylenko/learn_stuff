@@ -36,8 +36,9 @@ nft list ruleset
 ip rule list
 ```
 
-# Другой интересный вариант split tunnel
-https://antizapret.prostovpn.org/tech.html
+# Другие варианты
+* https://antizapret.prostovpn.org/tech.html (интересный вариант split tunnel через подмену DNS)
+* https://github.com/gSpotx2f/ruantiblock_openwrt
 
 # МТС Интернет
 * PON-розетку перевести в Bridged
