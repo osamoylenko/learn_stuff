@@ -1,5 +1,6 @@
 # Настройка VPN split tunnel по доменам
 * https://t.me/amnezia_vpn/204428/261586
+  - учесть https://sing-box.sagernet.org/migration/#tun-address-fields-are-merged (inet4_address -> address)
 * https://habr.com/ru/articles/767464/
 * https://4pda.to/forum/index.php?showtopic=1085698
 
@@ -13,6 +14,7 @@
 * Чтобы зафиксировать названия интерфейсов VPN:
   - указать `tun0` в `/etc/sing-box/config.json`
   - указать `dev tun1` в `/etc/openvpn/client.conf`
+  - добавить `pull-filter ignore redirect-gateway` в `/etc/openvpn/client.conf`
   - ```
     service sing-box stop
     service openvpn stop
@@ -22,6 +24,7 @@
 
 # Дополнительно
 * Установить dynamic dns и разрешить ssh-доступ извне с определённого IP
+* Если что-то не завелось, логи можно смотреть в веб-админке
 
 # Перезагрузка
 ```
