@@ -20,6 +20,9 @@
     service openvpn start
     ```
 
+# Дополнительно
+* Установить dynamic dns и разрешить ssh-доступ извне с определённого IP
+
 # Перезагрузка
 ```
 service network restart
