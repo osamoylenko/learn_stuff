@@ -40,6 +40,7 @@ curl -4 --interface tun0 ifconfig.me
 curl -4 --interface tun1 ifconfig.me 
 nft list ruleset
 ip rule list
+curl -v --resolve 'www.youtube.com:443:142.250.102.198' https://www.youtube.com # для задания конкретного IP
 ```
 
 # Другие варианты
