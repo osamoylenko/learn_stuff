@@ -32,6 +32,10 @@ service network restart
 service getdomains restart
 service firewall restart
 ```
+## Сбросить кэш DNS
+```
+killall -1 dnsmasq
+```
 
 # Проверки
 ```
