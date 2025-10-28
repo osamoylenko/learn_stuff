@@ -1,8 +1,18 @@
 # Настройка VPN split tunnel по доменам
 * https://t.me/amnezia_vpn/204428/261586
-  - учесть https://sing-box.sagernet.org/migration/#tun-address-fields-are-merged (inet4_address -> address)
 * https://habr.com/ru/articles/767464/
 * https://4pda.to/forum/index.php?showtopic=1085698
+
+## Обновить sing-box
+```
+sing-box version
+opkg update
+opkg upgrade sing-box
+sing-box check -c /etc/sing-box/config.json
+```
+
+При необходимости поправить конфиг inet4_address -> address  
+https://sing-box.sagernet.org/migration/#tun-address-fields-are-merged
 
 # Настройка дополнительного VPN
 * https://itdog.info/nastrojka-klienta-openvpn-na-openwrt/
@@ -46,6 +56,9 @@ nft list ruleset
 ip rule list
 curl -v --resolve 'www.youtube.com:443:142.250.102.198' https://www.youtube.com # для задания конкретного IP
 ```
+
+## Если curl зависает на * TLSv1.3 (OUT), TLS handshake, Client hello (1)
+Возможно дело в MTU. Попробовать https://unix.stackexchange.com/questions/252977/curl-hangs-after-client-hello
 
 # Другие варианты
 * https://antizapret.prostovpn.org/tech.html (интересный вариант split tunnel через подмену DNS)
