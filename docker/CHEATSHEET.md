@@ -65,3 +65,8 @@ restart & reattach exited container
 docker start -a -i `docker ps -q -l`
 
 docker run --network=host --rm -it ubuntu
+
+# Использование ресурсов
+sudo docker stats
+
+export BUILDKIT_PROGRESS=plain # получать вывод при сборке образа

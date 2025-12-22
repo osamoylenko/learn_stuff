@@ -1,0 +1,14 @@
+https://superset.apache.org/docs/installation/docker-compose/#option-4---boot-up-an-official-release
+
+Выполняем ряд улучшений (см. историю git на сервере superset):
+- убрать из docker-compose разворачивание сервиса PostgreSQL и соотв. volume локально (используем внешнюю БД)
+- прописать в ports 127.0.0.1 (только локальные подключения)
+- прописать в docker/.env доступы к БД, админке, секрет
+- отключить загрузку демо-данных
+
+Потом запускаем docker compose -f docker-compose-image-tag.yml up -d --build
+
+docker run -p 127.0.0.1:9000:80 \
+    -e 'PGADMIN_DEFAULT_EMAIL=...' \
+    -e 'PGADMIN_DEFAULT_PASSWORD=...' \
+    -d dpage/pgadmin4

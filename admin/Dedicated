@@ -1,0 +1,18 @@
+- Где разворачивать БД и другие данные? Может быть в облаке?
+- Как правильно бэкапить?
+
+Иностранный дедик (дешевле РФ) + proxmox + zfs
+
+Отдельный IP на виртуалку
+https://help.ovhcloud.com/csm/en-dedicated-servers-network-bridging?id=kb_article_view&sysparm_article=KB0043731
+
+https://github.com/awesome-selfhosted/awesome-selfhosted
+
+хецнер - не принимает россиян
+https://www.scaleway.com/
+https://www.netcup.com/en/server/root-server
+https://aeza.net/
+реселлер хецнера https://www.ipserver.su/
+https://t.me/BitrixSe/115999
+https://www.cpubenchmark.net/CPU_mega_page.html
+https://t.me/ru_ovh
