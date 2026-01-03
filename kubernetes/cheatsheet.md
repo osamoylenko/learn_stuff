@@ -201,3 +201,7 @@ app:
       scope: cluster
 cert-manager:
   enabled: false
+
+
+локально установить зависимости
+helm dependency update ./deploy/helm/
