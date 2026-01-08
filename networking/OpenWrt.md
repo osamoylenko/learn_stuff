@@ -60,6 +60,15 @@ curl -v --resolve 'www.youtube.com:443:142.250.102.198' https://www.youtube.com 
 ## Если curl зависает на * TLSv1.3 (OUT), TLS handshake, Client hello (1)
 Возможно дело в MTU. Попробовать https://unix.stackexchange.com/questions/252977/curl-hangs-after-client-hello
 
+## Если надо распределять в VPN по IP-адресу, а не по домену
+В `/etc/config/firewall` в секции `config ipset` добавляем записи `list entry`:
+```
+config ipset
+        option name 'vpn_domains'
+        option match 'dst_net'
+        list entry '149.154.160.0/20'
+```
+
 # Другие варианты
 * https://antizapret.prostovpn.org/tech.html (интересный вариант split tunnel через подмену DNS)
 * https://github.com/gSpotx2f/ruantiblock_openwrt
