@@ -41,6 +41,8 @@ kubectl port-forward service/datalore-front 8080
 kubectl top nodes
 kubectl top pods -n kapot-prod
 
+События OOM-kill: kubectl get events --field-selector reason=OOMKilling
+
 
 
 
