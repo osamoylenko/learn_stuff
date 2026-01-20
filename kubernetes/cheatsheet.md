@@ -61,26 +61,24 @@ kubectl create namespace kapot-prod
 
 
 
+# Работа с секретами
 kubectl -n kapot-stage create secret generic backend-secrets \
   --from-literal=DATABASE_URL="postgresql://...@192.168.0.4:5432/default_db" \
   --from-literal=JWT_SECRET="..." \
   --from-literal=AWS_ACCESS_KEY_ID=... \
   --from-literal=AWS_SECRET_ACCESS_KEY=...
-  
-kubectl describe secret backend-secrets -n kapot-prod
-kubectl get secret backend-secrets -o yaml -n kapot-prod
-  
-  
+
+kubectl -n kapot-stage edit secret backend-secrets
+echo -n "secret value" | base64
+
+kubectl describe secret backend-secrets -n kapot-stage
+kubectl get secret backend-secrets -o yaml -n kapot-stage
+
 kubectl -n kapot-stage create secret docker-registry regcred \
   --docker-server="registry.gitlab.com/garnet-lab/kapot/kapot" \
   --docker-username="..." \
   --docker-password="..."
-  
-  
-
-TLS
-cert-manager
-https://timeweb.cloud/docs/k8s/addons/cert-manager
+kubectl get secret regcred -o yaml -n kapot-stage
 
 
 Авторизация Basic Auth в Ingress NGINX
@@ -90,6 +88,9 @@ kubectl get secret basic-auth -o yaml -n kapot-stage
 
 
 
+TLS
+cert-manager
+https://timeweb.cloud/docs/k8s/addons/cert-manager
 
 
 
@@ -146,12 +147,10 @@ helm upgrade --install kapot deploy/helm -n "kapot-prod" --create-namespace -f d
 helm template kapot . -n kapot-stage -f ./values-stage.yaml --show-only templates/init-job.yaml --set backend.image.tag="0f885260" --set initJob.flags.INIT_CLEAR=true --set initJob.flags.INIT_SEED=true | kubectl -n kapot-stage apply -f -
 kubeckubectl get pods -n cert-manager
 kubectl create namespace kapot-prod
-kubectl create secret generic basic-auth --from-file=auth -n kapot-prod
 kubectl delete pod -l app.kubernetes.io/component=controller -ningress-nginx
 kubectl delete service ingress-nginx-controller -n ingress-nginx
 kubectl delete service ingress-nginx-controller -n kapot-prod
 kubectl describe pod frontend-65ff6bf87b-r9kbt -n kapot-prod
-kubectl describe secret backend-secrets -n kapot-prod
 kubectl describe service/ingress-nginx-controller -n ingress-nginx
 kubectl dlogs frontend-65ff6bf87b-r9kbt -n kapot-prod
 kubectl exec -it backend-558fdd9669-2tw8p -n kapot-prod -- sh
@@ -162,8 +161,6 @@ kubectl get nodes
 kubectl get nodes -A
 kubectl get pods --all-namespaces
 kubectl get pods -n kapot-prod
-kubectl get secret backend-secrets -o yaml -n kapot-prod
-kubectl get secret regcred -o yaml -n kapot-prod
 kubectl get services --all-namespaces
 kubectl logs deployment/frontend --all-pods=true -n kapot-prod --tail 100 --timestamps
 kubectl logs prisma-migrate-gnvtl -n kapot-prod
@@ -173,7 +170,6 @@ kubectl -n ingress-nginx port-forward ingress-nginx-controller-68wvs
 kubectl -n ingress-nginx port-forward ingress-nginx-controller-68wvs 8080:80
 kubectl -n ingress-nginx port-forward service/ingress 80
 kubectl -n kapot-prod apply -f deploy/k8s/base/prisma-migrate-job.yaml
-kubectl -n kapot-prod create secret docker-registry regcred   --docker-server="registry.gitlab.com/garnet-lab/kapot/kapot"   --docker-username="..."   --docker-password="..."
 kubectl -n kapot-prod delete job prisma-migrate --ignore-not-found
 kubectl -n kapot-prod logs ingress-nginx-controller-68wvs
 kubectl -n kapot-prod port-forward service/frontend 8000
