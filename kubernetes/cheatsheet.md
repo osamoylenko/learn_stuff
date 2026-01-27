@@ -126,7 +126,9 @@ docker build -t my-app:latest .
 kubectl apply -f deployment.yaml
 ```
 
+### Посмотреть логи всех подов деплоймента или с определённым лейблом
 kubectl logs deployment/backend --all-pods=true -n kapot-prod
+kubectl logs -l app.kubernetes.io/name=backend -n kapot-prod
 
 kubectl exec -it backend-558fdd9669-2tw8p -n kapot-prod -- sh
 
