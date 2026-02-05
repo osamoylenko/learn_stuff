@@ -151,16 +151,13 @@ kubeckubectl get pods -n cert-manager
 kubectl create namespace kapot-prod
 kubectl delete pod -l app.kubernetes.io/component=controller -ningress-nginx
 kubectl delete service ingress-nginx-controller -n ingress-nginx
-kubectl delete service ingress-nginx-controller -n kapot-prod
 kubectl describe pod frontend-65ff6bf87b-r9kbt -n kapot-prod
 kubectl describe service/ingress-nginx-controller -n ingress-nginx
-kubectl dlogs frontend-65ff6bf87b-r9kbt -n kapot-prod
 kubectl exec -it backend-558fdd9669-2tw8p -n kapot-prod -- sh
 kubectl get all --all-namespaces
 kubectl get ingress --all-namespaces
 kubectl get jobs --all-namespaces
 kubectl get nodes
-kubectl get nodes -A
 kubectl get pods --all-namespaces
 kubectl get pods -n kapot-prod
 kubectl get services --all-namespaces
